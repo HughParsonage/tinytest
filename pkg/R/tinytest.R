@@ -632,7 +632,7 @@ run_test_file <- function( file
     local_report_files(sidefx)
     if (verbose == 2) print_status(prfile, o, color, print=TRUE)
   }
-  td <- abs(Sys.time() - t0)
+  td <- difftime(Sys.time(), t0, units = "secs")
   tx <- humanize(td, color=color)
   if (verbose == 1){ 
     # always when run in parallel. And we can only print once in that case
