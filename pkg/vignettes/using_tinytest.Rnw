@@ -137,14 +137,20 @@ Currently, the following expectations are implemented.
 \code{expect\_equal(current, target)}      & equality (using \code{all.equal})\\
 \code{expect\_equivalent(current, target)} & equality, ignoring attributes\\
 \code{expect\_identical(current, target)}  & equality, (using, \code{identical})\\
+\code{expect\_length(current, length)}     & check lenght of object\\
 \code{expect\_true(current)}               & \code{current} evaluates to \code{TRUE}\\
 \code{expect\_false(current)}              & \code{current} evaluates to \code{FALSE}\\
+\code{expect\_match(current, pattern)}     & All strings in \code{current} match \code{pattern}\\
 \code{expect\_inherits(current, class)}    & \code{current} inherits from \code{class}\\
 \code{expect\_null(current)}               & \code{current} evaluates to \code{NULL}\\
 \code{expect\_error(current, pattern)}     & error message matching \code{pattern}\\
 \code{expect\_warning(current, pattern)}   & warning message matching \code{pattern}\\
 \code{expect\_message(current, pattern)}   & message matching \code{pattern}\\
-\code{expect\_silent(current, pattern)}    & expect no warnings or errors (just run)\\
+\code{expect\_silent(current)}             & expect no warnings or errors (just run)\\
+\code{expect\_stdout(current, pattern)}    & expect output to \code{stdout} matching \code{pattern}\\
+\code{expect\_equal\_to\_reference(current, file)} & expect object equal to object stored in RDS file\\
+\code{expect\_equivalent\_to\_reference(current, file)} & expect object equivalent to object stored in RDS file\\
+
 \end{tabular}
 \end{center}
 Here, \code{target} is the intended outcome and \code{current} is the observed
@@ -322,6 +328,16 @@ message,  and report the information gathered up to where \code{exit} was
 called. A function like \code{test\_all} will then continue with the next file,
 so testing is not aborted completely.
 
+There is also a convenience function called \code{exit\_if\_not} that functions
+similarly to base R's \code{stopifnot}. It accepts a comma-separated list
+of expressions, and if any one of them does not result in a single \code{TRUE}
+the execution of the test file is stopped with a message. So you can
+do things like this.
+<<eval=FALSE>>=
+exit_if_not(requireNamespace("slartibartfast", quietly=TRUE)
+           , packageVersion("slartibartfast") >= "1.0.0")
+@
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -384,12 +400,13 @@ test_package("pkg", side_effects=list(pwd=FALSE))
 If you add \code{report\_side\_effects()} anywhere in a test file, certain
 external variables are  monitored from that point on, and for that file only.
 It can be switched off again by calling \code{report\_side\_effects(FALSE)}
-anywhere in the file.  The reporting functionality will compare the state of
-external variables before and after every expression in the test file and
-report any changes. 
+anywhere in the file.  The reporting functionality will compare the external
+state before and after every expression in the test file is run and report any
+changes. 
 
-At the moment, the variables that can be monitored include environment
-variables and the present working directory.
+At the moment, effects that can be monitored include environment
+variables, locale settings, the present working directory, and file operations
+in the test directory.
 
 
 Below is an example of a test file where side effects are recorded. The third

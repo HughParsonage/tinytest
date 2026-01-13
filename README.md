@@ -1,13 +1,14 @@
-[![CRAN](http://www.r-pkg.org/badges/version/tinytest)](http://cran.r-project.org/package=tinytest/)
-[![status](https://tinyverse.netlify.com/badge/tinytest)](https://CRAN.R-project.org/package=tinytest)
-[![Downloads](http://cranlogs.r-pkg.org/badges/tinytest)](http://cran.r-project.org/package=tinytest/)
+[![CRAN](https://www.r-pkg.org/badges/version/tinytest)](https://cran.r-project.org/package=tinytest/)
+[![status](https://tinyverse.netlify.app/badge/tinytest)](https://CRAN.R-project.org/package=tinytest)
+[![Downloads](https://cranlogs.r-pkg.org/badges/tinytest)](https://cran.r-project.org/package=tinytest/)
 
 
-# tinytest
-A lightweight, no-dependency, full-featured package for unit testing
+# tinytest <img src="img/logo_tinytest.png" width="150" align="right" alt="tinytest has no logo" />
 
-[Overview of functionality](pkg/README.md)
+A lightweight, no-dependency, full-featured package for unit testing 
 
+
+[Overview of functionality](pkg/README.md), or [Watch my talk at useR!2021](https://youtu.be/-PsaqMWfUIg?t=1104)
 
 ## Installing tinytest
 
@@ -28,7 +29,7 @@ cd tinytest
 make install
 ```
 
-![onwards to the tinyverse](watch/growth.png)
+![onwards to the tinyverse](img/growth.png)
 
 ## tinytest philosophy.
 
@@ -102,7 +103,7 @@ Of course, printing is configurable through options.
 
 ### Light weight is the right weight
 
-Keep it simple, keep it clean. See  [tinyverse.org](http://www.tinyverse.org).
+Keep it simple, keep it clean. See  [tinyverse.org](https://www.tinyverse.org).
 
 
 
